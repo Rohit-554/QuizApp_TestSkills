@@ -58,6 +58,7 @@ class QuizPanel : AppCompatActivity(){
                     submit_button.text="FINISH"
                 }
                 else{
+                    setOptionsEnabled() // Disable question options
                     submit_button.text="Go To Next Question "
                 }
             }else {
@@ -65,6 +66,7 @@ class QuizPanel : AppCompatActivity(){
                 when {
                     mCurrentPosition <= mQuestionList!!.size -> {
                         setquestion()
+                        setOptionsEnabled() // Enable question options
                     }
 
                     else -> {
@@ -126,6 +128,17 @@ class QuizPanel : AppCompatActivity(){
         view.background = ContextCompat.getDrawable(this,R.drawable.selected_border)
         view.typeface= Typeface.DEFAULT_BOLD
         view.setTextColor(Color.parseColor("#000000"))
+    }
+
+    /**
+     * Enable or disable options based on
+     * whether the submit button has been clicked.
+     */
+    private fun setOptionsEnabled() {
+        optionone.isEnabled = !optionone.isEnabled
+        optiontwo.isEnabled = !optiontwo.isEnabled
+        optionthree.isEnabled = !optionthree.isEnabled
+        optionfour.isEnabled = !optionfour.isEnabled
     }
 }
 
