@@ -32,16 +32,20 @@ class QuizPanel : AppCompatActivity(){
         setquestion()
 
         optionone.setOnClickListener(){
-        slctdoptnstyle(optionone,1)
+            slctdoptnstyle(optionone,1)
+            setSubmitButtonText()
         }
         optiontwo.setOnClickListener(){
             slctdoptnstyle(optiontwo,2)
+            setSubmitButtonText()
         }
         optionthree.setOnClickListener(){
             slctdoptnstyle(optionthree,3)
+            setSubmitButtonText()
         }
         optionfour.setOnClickListener(){
             slctdoptnstyle(optionfour,4)
+            setSubmitButtonText()
         }
         submit_button.setOnClickListener(){
             if(mSelectedOption!=0)
@@ -139,6 +143,10 @@ class QuizPanel : AppCompatActivity(){
         optiontwo.isEnabled = !optiontwo.isEnabled
         optionthree.isEnabled = !optionthree.isEnabled
         optionfour.isEnabled = !optionfour.isEnabled
+    }
+
+    private fun setSubmitButtonText() {
+        submit_button.text = getString(R.string.submit)
     }
 }
 
