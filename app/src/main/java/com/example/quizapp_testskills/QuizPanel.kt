@@ -32,16 +32,20 @@ class QuizPanel : AppCompatActivity(){
         setquestion()
 
         optionone.setOnClickListener(){
-        slctdoptnstyle(optionone,1)
+            slctdoptnstyle(optionone,1)
+            setSubmitButtonText()
         }
         optiontwo.setOnClickListener(){
             slctdoptnstyle(optiontwo,2)
+            setSubmitButtonText()
         }
         optionthree.setOnClickListener(){
             slctdoptnstyle(optionthree,3)
+            setSubmitButtonText()
         }
         optionfour.setOnClickListener(){
             slctdoptnstyle(optionfour,4)
+            setSubmitButtonText()
         }
         submit_button.setOnClickListener(){
             if(mSelectedOption!=0)
@@ -54,11 +58,12 @@ class QuizPanel : AppCompatActivity(){
                     Score=Score+1
                 }
                 setans(checkans.Correct_answer,R.drawable.correct_border)
+                disableQuestionOptions() // Disable question options
+
                 if(mCurrentPosition==mQuestionList!!.size) {
                     submit_button.text="FINISH"
                 }
                 else{
-                    setOptionsEnabled() // Disable question options
                     submit_button.text="Go To Next Question "
                 }
             }else {
@@ -66,7 +71,7 @@ class QuizPanel : AppCompatActivity(){
                 when {
                     mCurrentPosition <= mQuestionList!!.size -> {
                         setquestion()
-                        setOptionsEnabled() // Enable question options
+                        enableQuestionOptions() // Enable question options
                     }
 
                     else -> {
@@ -131,14 +136,27 @@ class QuizPanel : AppCompatActivity(){
     }
 
     /**
-     * Enable or disable options based on
-     * whether the submit button has been clicked.
+     * Disable all question options.
      */
-    private fun setOptionsEnabled() {
-        optionone.isEnabled = !optionone.isEnabled
-        optiontwo.isEnabled = !optiontwo.isEnabled
-        optionthree.isEnabled = !optionthree.isEnabled
-        optionfour.isEnabled = !optionfour.isEnabled
+    private fun disableQuestionOptions() {
+        optionone.isEnabled = false
+        optiontwo.isEnabled = false
+        optionthree.isEnabled = false
+        optionfour.isEnabled = false
+    }
+
+    /**
+     * Enable all question options.
+     */
+    private fun enableQuestionOptions() {
+        optionone.isEnabled = true
+        optiontwo.isEnabled = true
+        optionthree.isEnabled = true
+        optionfour.isEnabled = true
+    }
+
+    private fun setSubmitButtonText() {
+        submit_button.text = getString(R.string.submit)
     }
 }
 
